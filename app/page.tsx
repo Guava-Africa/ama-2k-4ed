@@ -302,7 +302,7 @@ export default function Home() {
               whileTap={{ scale: 0.95 }}
               className="bg-black text-white px-12 py-4 rounded-full font-black text-xl inline-flex items-center gap-3 shadow-2xl cursor-pointer"
             >
-              Get Started Now <FontAwesomeIcon icon={faArrowRight} className="w-5 h-5" />
+              Join Now <FontAwesomeIcon icon={faArrowRight} className="w-5 h-5" />
             </motion.button>
             </Link>
           </motion.div>
