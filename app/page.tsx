@@ -107,10 +107,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      {/* Hero Section - NO NAVBAR HERE */}
-      <div className="relative h-screen overflow-hidden -mt-16">
-        {/* Background images grid */}
-        <div className="absolute inset-0 grid grid-cols-3 gap-4 p-8 opacity-40">
+      {/* Hero Section - FULLY RESPONSIVE */}
+      <div className="relative min-h-screen overflow-hidden -mt-16">
+        {/* Background images grid - responsive gaps and padding */}
+        <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 p-2 md:p-8 opacity-40">
           {[0, 1, 2].map((panelIndex) => {
             const panelKey = `panel${panelIndex + 1}` as keyof typeof panelImages;
             const currentImgIndex = currentImages[panelKey];
@@ -122,14 +122,15 @@ export default function Home() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 1.3}}
                   transition={{ duration: 0.7 }}
-                  className="rounded-3xl overflow-hidden shadow-2xl"
+                  className="rounded-xl md:rounded-3xl overflow-hidden shadow-2xl"
                 >
                   <div 
                     className="w-full h-full bg-cover bg-center"
                     style={{ 
                       backgroundImage: `url(${panelImages[panelKey][currentImgIndex]})`,
                       backgroundSize: 'cover',
-                      minHeight: '400px',
+                      minHeight: '200px',
+                      height: '100%',
                     }}
                   />
                 </motion.div>
@@ -141,91 +142,88 @@ export default function Home() {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
         
-        <div className="relative z-10 h-full flex items-center">
+        <div className="relative z-10 h-full min-h-screen flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <Image src={'/logo.png'} alt="Logo" width={200} height={100} className='mx-auto'/>
-            {/* <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-block bg-yellow-400 px-6 py-2 rounded-full mb-6 shadow-xl"
-            >
-              <span className="font-black text-black text-sm tracking-wider">⚠️ SYSTEM CHANGE NEEDED • URGENT ⚠️</span>
-            </motion.div> */}
+            {/* Logo - responsive sizing */}
+            <div className="mb-4 md:mb-6">
+              <Image 
+                src={'/logo.png'} 
+                alt="Logo" 
+                width={150} 
+                height={75} 
+                className='mx-auto w-32 md:w-48 lg:w-56'
+                priority
+              />
+            </div>
+            
+            {/* Main Title - responsive text sizes */}
             <motion.h1 
               initial={{ y: 60, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="text-8xl md:text-9xl font-black uppercase tracking-tighter mb-6"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tighter mb-4 md:mb-6"
             >
-              <div className="bg-yellow-300 inline-block px-8 py-2 transform -rotate-4 shadow-2xl " >
-                <span>AMA</span>
-                <span className="text-red-500">2</span>
-                <span className="text-green-500">K</span>
-                4
-                <span className="text-red-500 " >ED</span>
-                </div>
-              <br />
-              {/* <span className="text-white drop-shadow-lg">4ED</span> */}
+              <div className="bg-yellow-300 inline-block px-3 py-1 sm:px-6 sm:py-2 transform -rotate-4 shadow-2xl">
+                <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">AMA</span>
+                <span className="text-red-500 text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">2</span>
+                <span className="text-green-500 text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">K</span>
+                <span className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">4</span>
+                <span className="text-red-500 text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">ED</span>
+              </div>
             </motion.h1>
+            
+            {/* Tagline - responsive text */}
             <motion.p 
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-2xl text-white font-bold drop-shadow-lg max-w-2xl mx-auto italic"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white font-bold drop-shadow-lg max-w-2xl mx-auto italic px-4"
             >
               A reflection of a brighter future
             </motion.p>
-            {/* <motion.p
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-lg text-white/90 mt-4 max-w-xl mx-auto"
-            >
-              50,000+ strong. 127 cities. Real change happening NOW.
-            </motion.p> */}
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator - responsive sizing */}
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white z-10"
+          className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 text-white z-10"
         >
-          <div className="text-3xl">↓</div>
+          <div className="text-2xl md:text-3xl">↓</div>
         </motion.div>
       </div>
 
-      {/* MISSION STATEMENT SECTION */}
-      <div className="py-20 bg-gradient-to-br from-yellow-50 via-white to-green-50">
+      {/* MISSION STATEMENT SECTION - responsive */}
+      <div className="py-12 md:py-20 bg-gradient-to-br from-yellow-50 via-white to-green-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-yellow-400"
+            className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border-l-8 border-yellow-400"
           >
-            <p className="text-2xl md:text-3xl font-bold text-gray-800 leading-relaxed">
+            <p className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 leading-relaxed">
               Empowering Youth, Transforming Lives: Educate, Inspire, Unite, and Secure a Brighter Future for All, Today and Tomorrow
             </p>
           </motion.div>
         </div>
       </div>
 
-      {/* MISSION PILLARS SECTION */}
-      <div className="py-24 bg-white">
+      {/* MISSION PILLARS SECTION - responsive grid */}
+      <div className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <div className="inline-flex items-center gap-2 bg-yellow-400 px-4 py-1 rounded-full mb-4">
-              <span className="font-black text-black">OUR MISSION</span>
+            <div className="inline-flex items-center gap-2 bg-yellow-400 px-3 py-1 md:px-4 rounded-full mb-4">
+              <span className="font-black text-black text-sm md:text-base">OUR MISSION</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black">Building Tomorrow, Today</h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">Four pillars driving real change for youth worldwide</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black">Building Tomorrow, Today</h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto px-4">Four pillars driving real change for youth worldwide</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {pillars.map((pillar, i) => (
               <motion.div
                 key={i}
@@ -233,36 +231,36 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="bg-gray-50 p-8 rounded-2xl shadow-lg text-center group hover:shadow-xl transition-all"
+                className="bg-gray-50 p-6 md:p-8 rounded-2xl shadow-lg text-center group hover:shadow-xl transition-all"
               >
-                <div className={`w-20 h-20 mx-auto mb-6 bg-gradient-to-r ${pillar.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                  <FontAwesomeIcon icon={pillar.icon} className="w-10 h-10 text-white" />
+                <div className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-r ${pillar.color} rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                  <FontAwesomeIcon icon={pillar.icon} className="w-8 h-8 md:w-10 md:h-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-3">{pillar.title}</h3>
-                <p className="text-gray-600">{pillar.desc}</p>
+                <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">{pillar.title}</h3>
+                <p className="text-gray-600 text-sm md:text-base">{pillar.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* PROGRAMS SECTION */}
-      <div className="py-24 bg-gray-50">
+      {/* PROGRAMS SECTION - responsive */}
+      <div className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <div className="inline-flex items-center gap-2 bg-green-100 px-4 py-1 rounded-full mb-4">
+            <div className="inline-flex items-center gap-2 bg-green-100 px-3 py-1 md:px-4 rounded-full mb-4">
               <FontAwesomeIcon icon={faGlobe} className="w-4 h-4 text-green-600" />
-              <span className="font-black text-green-600">OUR IMPACT</span>
+              <span className="font-black text-green-600 text-sm md:text-base">OUR IMPACT</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black">Programs That Transform</h2>
-            <p className="text-gray-600 mt-4">Real initiatives creating measurable change</p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black">Programs That Transform</h2>
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto px-4">Real initiatives creating measurable change</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {programs.map((program, i) => (
               <motion.div
                 key={i}
@@ -270,13 +268,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -5 }}
-                className={`relative p-6 rounded-2xl overflow-hidden border-2 border-${program.color}-200 bg-gradient-to-br from-white to-${program.color}-50`}
+                className="relative p-6 rounded-2xl overflow-hidden border-2 border-yellow-200 bg-gradient-to-br from-white to-yellow-50"
               >
-                <div className={`absolute top-0 right-0 w-20 h-20 bg-${program.color}-400 rounded-bl-full opacity-10`} />
-                <h3 className="text-xl font-bold mb-2">{program.name}</h3>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-yellow-400 rounded-bl-full opacity-10" />
+                <h3 className="text-lg md:text-xl font-bold mb-2">{program.name}</h3>
                 <p className="text-gray-600 text-sm">{program.impact}</p>
                 <div className="mt-4">
-                  <span className={`text-xs font-semibold text-${program.color}-600`}>Learn more →</span>
+                  <span className="text-xs font-semibold text-yellow-600">Learn more →</span>
                 </div>
               </motion.div>
             ))}
@@ -284,26 +282,25 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CALL TO ACTION */}
-      <div className="py-24 bg-gradient-to-br from-yellow-200 via-yellow-400 to-yellow-600 relative overflow-hidden">
+      {/* CALL TO ACTION - responsive */}
+      <div className="py-16 md:py-24 bg-gradient-to-br from-yellow-200 via-yellow-400 to-yellow-600 relative overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            {/* <FontAwesomeIcon icon={faHeart} className="w-16 h-16 mx-auto mb-6 text-black" /> */}
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Be Part of the Change</h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto font-semibold">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 px-4">Be Part of the Change</h2>
+            <p className="text-base md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto font-semibold px-4">
               Together, we're building a reflection of a brighter future. Join thousands of young leaders already making an impact.
             </p>
             <Link href="/join" className="inline-block cursor-pointer">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-black text-white px-12 py-4 rounded-full font-black text-xl inline-flex items-center gap-3 shadow-2xl cursor-pointer"
-            >
-              Join Now <FontAwesomeIcon icon={faArrowRight} className="w-5 h-5" />
-            </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-black text-white px-8 md:px-12 py-3 md:py-4 rounded-full font-black text-base md:text-xl inline-flex items-center gap-2 md:gap-3 shadow-2xl cursor-pointer"
+              >
+                Join Now <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 md:w-5 md:h-5" />
+              </motion.button>
             </Link>
           </motion.div>
         </div>
